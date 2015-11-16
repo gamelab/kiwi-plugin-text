@@ -5,7 +5,7 @@ Text Plugin
 	Type: Game Object
 	Author: Benjamin D. Richards for Kiwi.js Team
 	Website: www.kiwijs.org
-	Kiwi.js Version Last Tested: 1.3.1
+	Kiwi.js Version Last Tested: 1.4.0
 
 # Description
 
@@ -65,7 +65,7 @@ var text = new Kiwi.Plugins.Text( {
 });
 ```
 
-That's it! You now have a text object. It is automatically added to the state. By default, it displays "text".
+That's it! You now have a text object. It is **automatically** added to the state. By default, it displays "text".
 
 You may specify additional parameters, in any order, to customise the text. You may also set these parameters after creation (except for `state`). The default values are as follows:
 
@@ -105,7 +105,7 @@ You may specify the distance between lines via `lineHeight`. This is a string, m
 
 You may set a normalized anchor point using `anchorNormalX` and `anchorNormalY`. This is an alternate way to set the anchor point. The anchor normal is measured as a proportion of the current width and height, so at [ 0, 0 ] the anchor point is in the top left corner of the text, and at [ 1, 1 ] it is in the bottom right corner.
 
-Note that text alignment will chance where the text appears. By default, text is aligned "left". It appears to the right of the [ x, y ] coordinates of the object. If you set `alignment = "right"`, the text will instead appear to the left of the object coordinates, and "center" will position it on top of the coordinates. This allows you to precisely align text to left, right, and middle of areas without knowing the exact width of the text. However, be aware that the position and anchor point does not change. While an anchor normal of [ 0.5, 0.5 ] is central to text aligned left, the center of text aligned right is at [ -0.5, 0.5 ].
+Note that text alignment will chance where the text appears. By default, text is aligned "left". It appears to the right of the [ x, y ] coordinates of the object. If you set `alignment = "right"`, the text will instead appear to the left of the object coordinates, and `"center"` will position it on top of the coordinates. This allows you to precisely align text to left, right, and middle of areas without knowing the exact width of the text. However, be aware that the position and anchor point does not change. While an anchor normal of [ 0.5, 0.5 ] is central to text aligned left, the center of text aligned right is at [ -0.5, 0.5 ].
 
 # Thank You
 
