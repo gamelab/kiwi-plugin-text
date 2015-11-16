@@ -1,0 +1,901 @@
+{
+    "project": {
+        "name": "text",
+        "description": "Text that displays on multiple lines.",
+        "version": "1.0.0",
+        "url": "http://kiwijs.org/"
+    },
+    "files": {
+        "src/text-1.0.0.js": {
+            "name": "src/text-1.0.0.js",
+            "modules": {
+                "Plugins": 1
+            },
+            "classes": {
+                "Kiwi.Plugins.Text": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Kiwi.Plugins": 1
+            }
+        }
+    },
+    "modules": {
+        "Kiwi": {
+            "name": "Kiwi",
+            "submodules": {
+                "Plugins": 1
+            },
+            "classes": {
+                "Kiwi.Plugins.Text": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Kiwi.Plugins": 1
+            },
+            "file": "src/text-1.0.0.js",
+            "line": 10
+        },
+        "Plugins": {
+            "name": "Plugins",
+            "submodules": {},
+            "classes": {
+                "Kiwi.Plugins.Text": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {
+                "Kiwi.Plugins": 1
+            },
+            "module": "Kiwi",
+            "namespace": "",
+            "file": "src/text-1.0.0.js",
+            "line": 10,
+            "description": "Text is a GameObject that is used when you are wanting to render\ntext onto the current State.\n\nText has width/height and a hitbox, but because text is difficult\nto measure, these may not be 100% accurate. It does not have an\n\"Input\" component either, although you may choose to add one.\nBe aware of these limitations."
+        }
+    },
+    "classes": {
+        "Kiwi.Plugins.Text": {
+            "name": "Kiwi.Plugins.Text",
+            "shortname": "Text",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins",
+            "file": "src/text-1.0.0.js",
+            "line": 10,
+            "description": "Text is a GameObject that is used when you are wanting to render\ntext onto the current State.\n\nText has width/height and a hitbox, but because text is difficult\nto measure, these may not be 100% accurate. It does not have an\n\"Input\" component either, although you may choose to add one.\nBe aware of these limitations.",
+            "extends": "Kiwi.Entity",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "params",
+                    "description": "Composite parameter object",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "addToState",
+                            "description": "Whether the Text object\n\t\tshould be automatically added to the State upon creation",
+                            "type": "Boolean",
+                            "optional": true,
+                            "optdefault": "true"
+                        },
+                        {
+                            "name": "alignment",
+                            "description": "Text alignment.\n\t\tMay be \"left\", \"right\", \"center\",\n\t\t`Kiwi.Plugins.Text.TEXT_ALIGN_CENTER`,\n\t\t`Kiwi.Plugins.Text.TEXT_ALIGN_LEFT`,\n\t\tor `Kiwi.Plugins.Text.TEXT_ALIGN_RIGHT`.",
+                            "type": "String",
+                            "optional": true,
+                            "optdefault": "\"left\""
+                        },
+                        {
+                            "name": "alpha",
+                            "description": "Object opacity",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "1"
+                        },
+                        {
+                            "name": "anchorNormalX",
+                            "description": "Horizontal anchor point\n\t\tas a ratio of width",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "0"
+                        },
+                        {
+                            "name": "anchorNormalY",
+                            "description": "Vertical anchor point\n\t\tas a ratio of height",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "0"
+                        },
+                        {
+                            "name": "anchorPointX",
+                            "description": "Horizontal anchor point\n\t\tcoordinate",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "0"
+                        },
+                        {
+                            "name": "anchorPointY",
+                            "description": "Vertical anchor point\n\t\tcoordinate",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "0"
+                        },
+                        {
+                            "name": "color",
+                            "description": "Text color",
+                            "type": "String",
+                            "optional": true,
+                            "optdefault": "\"#000000\""
+                        },
+                        {
+                            "name": "fontFamily",
+                            "description": "\n\t\tFont family to be used when rendering",
+                            "type": "String",
+                            "optional": true,
+                            "optdefault": "\"sans-serif\""
+                        },
+                        {
+                            "name": "fontSize",
+                            "description": "Size of the text in pixels;\n\t\tequivalent to and overrides `size`",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "32"
+                        },
+                        {
+                            "name": "lineHeight",
+                            "description": "Height of lines, defined\n\t\tin pixels or ems",
+                            "type": "String",
+                            "optional": true,
+                            "optdefault": "\"1em\""
+                        },
+                        {
+                            "name": "lineHeightNormalized",
+                            "description": "Height of lines in ems.\n\t\tTakes priority over `lineHeight` during creation.",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "1"
+                        },
+                        {
+                            "name": "maxHeight",
+                            "description": "Maximum pixel height\n\t\tof text.",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "Infinity"
+                        },
+                        {
+                            "name": "maxLines",
+                            "description": "Maximum number\n\t\tof text lines to render.",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "Infinity"
+                        },
+                        {
+                            "name": "maxWidth",
+                            "description": "Maximum pixel width\n\t\tof text lines.",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "Infinity"
+                        },
+                        {
+                            "name": "rotation",
+                            "description": "Initial rotation",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "0"
+                        },
+                        {
+                            "name": "scale",
+                            "description": "Scale, before X and Y axes",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "1"
+                        },
+                        {
+                            "name": "scaleX",
+                            "description": "Horizontal scale",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "1"
+                        },
+                        {
+                            "name": "scaleY",
+                            "description": "Vertical scale",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "1"
+                        },
+                        {
+                            "name": "size",
+                            "description": "Size of the text in pixels;\n\t\tequivalent to and overridden by `fontSize`. Deprecated.",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "32"
+                        },
+                        {
+                            "name": "state",
+                            "description": "State that this Text belongs to",
+                            "type": "Kiwi.State"
+                        },
+                        {
+                            "name": "text",
+                            "description": "Text to be displayed",
+                            "type": "String",
+                            "optional": true,
+                            "optdefault": "\"text\""
+                        },
+                        {
+                            "name": "weight",
+                            "description": "Weight of the text",
+                            "type": "String",
+                            "optional": true,
+                            "optdefault": "\"normal\""
+                        },
+                        {
+                            "name": "x",
+                            "description": "Horizontal coordinate",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "0"
+                        },
+                        {
+                            "name": "y",
+                            "description": "Vertical coordinate",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "0"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "classitems": [
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 67,
+            "description": "Maximum pixel height of text. If undefined, an infinite number\nof lines will be permitted. Note that only the first 2048\npixel rows will display.",
+            "itemtype": "property",
+            "name": "_maxHeight",
+            "type": "number",
+            "default": "Infinity",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 79,
+            "description": "Maximum number of text lines. If undefined, an infinite number\nof lines will be permitted. Note that only the first 2048\npixel rows will display.",
+            "itemtype": "property",
+            "name": "_maxLines",
+            "type": "number",
+            "default": "Infinity",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 91,
+            "description": "Maximum pixel width of text lines. If undefined, lines may be\ninfinite in length. Note that only the first 2048 pixel columns\nwill display.",
+            "itemtype": "property",
+            "name": "_maxWidth",
+            "type": "number",
+            "default": "Infinity",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 103,
+            "description": "If the temporary canvas is dirty and needs to be re-rendered.",
+            "itemtype": "property",
+            "name": "_tempDirty",
+            "type": "boolean",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 153,
+            "description": "Horizontal anchor normal. This defines `anchorPointX` as a proportion\nof `width`. If `anchorNormalX` is defined, it will update `anchorPointX`\nwhen the dimensions of the rendered image change.",
+            "itemtype": "property",
+            "name": "_anchorNormalX",
+            "type": "number",
+            "default": "undefined",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 165,
+            "description": "Vertical anchor normal. This defines `anchorPointY` as a proportion\nof `height`. If `anchorNormalY` is defined, it will update `anchorPointY`\nwhen the dimensions of the rendered image change.",
+            "itemtype": "property",
+            "name": "_anchorNormalY",
+            "type": "number",
+            "default": "undefined",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 179,
+            "description": "GL renderer for this text object's internal canvas",
+            "itemtype": "property",
+            "name": "glRenderer",
+            "type": "Kiwi.Renderers.Renderer",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 195,
+            "description": "The text that is to be rendered.",
+            "itemtype": "property",
+            "name": "_text",
+            "type": "string",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 203,
+            "description": "The weight of the font.",
+            "itemtype": "property",
+            "name": "_fontWeight",
+            "type": "string",
+            "default": "\"normal\"",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 212,
+            "description": "The size of the font.",
+            "itemtype": "property",
+            "name": "_fontSize",
+            "type": "number",
+            "default": "32",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 221,
+            "description": "The color of the text.",
+            "itemtype": "property",
+            "name": "_fontColor",
+            "type": "Kiwi.Utils.Color",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 229,
+            "description": "The font family that is to be rendered.",
+            "itemtype": "property",
+            "name": "_fontFamily",
+            "type": "string",
+            "default": "\"sans-serif\"",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 238,
+            "description": "The alignment of the text. This can either be \"left\", \"right\" or \"center\"",
+            "itemtype": "property",
+            "name": "_textAlign",
+            "type": "string",
+            "default": "\"center\"",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 250,
+            "description": "The baseline of the text to be rendered.",
+            "itemtype": "property",
+            "name": "_baseline",
+            "type": "string",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 259,
+            "description": "Canvas element onto which the text is rendered",
+            "itemtype": "property",
+            "name": "_canvas",
+            "type": "HTMLCanvasElement.",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 269,
+            "description": "Context for the canvas element. Used while rendering text.",
+            "itemtype": "property",
+            "name": "_ctx",
+            "type": "CanvasRenderingContext2D",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 283,
+            "description": "Hitbox component",
+            "itemtype": "property",
+            "name": "box",
+            "type": "Kiwi.Components.Box",
+            "access": "public",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 304,
+            "description": "Execute when Kiwi Game that has been told to use this plugin\nreaches the boot stage of the game loop.",
+            "itemtype": "method",
+            "name": "create",
+            "params": [
+                {
+                    "name": "game",
+                    "description": "Game that is current in the boot stage",
+                    "type": "Kiwi.Game"
+                }
+            ],
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 316,
+            "description": "Create a pool of objects to be used during rendering.",
+            "itemtype": "method",
+            "name": "_createPool",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 323,
+            "description": "Composite pool object",
+            "itemtype": "property",
+            "name": "_pool",
+            "type": "object",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 340,
+            "description": "The name of this plugin.",
+            "itemtype": "property",
+            "name": "name",
+            "type": "string",
+            "default": "\"Text\"",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 350,
+            "description": "The version of this plugin.",
+            "itemtype": "property",
+            "name": "version",
+            "type": "string",
+            "default": "\"0.0.1\"",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 360,
+            "description": "Returns the type of object that this is.",
+            "itemtype": "method",
+            "name": "objType",
+            "return": {
+                "description": "\"Text\"",
+                "type": "String"
+            },
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 373,
+            "description": "Horizontal anchor normal. This defines `anchorPointX` as a proportion\nof `width`. If `anchorNormalX` is defined, it will update `anchorPointX`\nwhen the dimensions of the rendered image change.",
+            "itemtype": "property",
+            "name": "anchorNormalX",
+            "type": "number",
+            "default": "undefined",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 395,
+            "description": "Vertical anchor normal. This defines `anchorPointY` as a proportion\nof `height`. If `anchorNormalY` is defined, it will update `anchorPointY`\nwhen the dimensions of the rendered image change.",
+            "itemtype": "property",
+            "name": "anchorNormalY",
+            "type": "number",
+            "default": "undefined",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 417,
+            "description": "Alignment of text. You can either use the static TEXT_ALIGN\nconstants or pass a string.\n\nAlias of `textAlign`.",
+            "itemtype": "property",
+            "name": "alignment",
+            "type": "string",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 439,
+            "description": "Height of individual text lines. Measured in pixels or ems.\nFor example, \"100px\" or \"1.3em\".",
+            "itemtype": "property",
+            "name": "lineHeight",
+            "type": "string",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 449,
+            "description": "Main storage of line height.",
+            "itemtype": "property",
+            "name": "_lineHeight",
+            "type": "string",
+            "access": "private",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 468,
+            "description": "Height of individual text lines, determining separation\nbetween lines. Measured in ems relative to font size.",
+            "itemtype": "property",
+            "name": "lineHeightNormalized",
+            "type": "number",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 501,
+            "description": "The text that you would like to appear in this textfield.",
+            "itemtype": "property",
+            "name": "text",
+            "type": "string",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 522,
+            "description": "The color of the font that is contained in this textfield.\nMay be set with a string, or an array of any valid\nKiwi.Utils.Color arguments.\n\nReturns a hex string prepended with \"#\".",
+            "itemtype": "property",
+            "name": "color",
+            "type": "string",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 550,
+            "description": "The weight of the font.",
+            "itemtype": "property",
+            "name": "fontWeight",
+            "type": "string",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 571,
+            "description": "The size on font when being displayed onscreen.",
+            "itemtype": "property",
+            "name": "fontSize",
+            "type": "number",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 591,
+            "description": "The size on font when being displayed onscreen.\nAlias for `fontSize`.",
+            "itemtype": "property",
+            "name": "size",
+            "type": "number",
+            "deprecated": true,
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 613,
+            "description": "The font family that is being used to render the text.",
+            "itemtype": "property",
+            "name": "fontFamily",
+            "type": "string",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 634,
+            "description": "Maximum pixel height of text. If undefined, an infinite number\nof lines will be permitted. Note that only the first 2048\npixel columns will display.",
+            "itemtype": "property",
+            "name": "maxHeight",
+            "type": "number",
+            "default": "Infinity",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 658,
+            "description": "Maximum number of text lines. If undefined, an infinite number\nof lines will be permitted. Note that only the first 2048\npixel rows will display.",
+            "itemtype": "property",
+            "name": "maxLines",
+            "type": "number",
+            "default": "Infinity",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 682,
+            "description": "Maximum pixel width of text lines. If undefined, lines may be\ninfinite in length. Note that only the first 2048 pixel columns\nwill display.",
+            "itemtype": "property",
+            "name": "maxWidth",
+            "type": "number",
+            "default": "Infinity",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 706,
+            "description": "Alignment of the text. You can either use the static TEXT_ALIGN\nconstants or pass a string.",
+            "itemtype": "property",
+            "name": "textAlign",
+            "type": "string",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 728,
+            "description": "This method is used to render the text to an offscreen-canvas\nwhich is held in a TextureAtlas (which is generated upon the\ninstanitation of this class). This is so that the canvas doesn't\nrender it every frame as it can be costly and so that it can be used\nin WebGL with the TextureAtlasRenderer.\n\nYou should not need to call this function. It will automatically\nbe invoked during the render cycle. In the event that you need to\nget up-to-date metrics, however, you should use this method before\naccessing object properties to ensure they are updated.",
+            "itemtype": "method",
+            "name": "renderText",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 912,
+            "description": "Called by the Layer to which this Game Object is attached",
+            "itemtype": "method",
+            "name": "render",
+            "params": [
+                {
+                    "name": "camera",
+                    "description": "Current camera",
+                    "type": "Kiwi.Camera"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 965,
+            "description": "Renders the GameObject using WebGL.",
+            "itemtype": "method",
+            "name": "renderGL",
+            "params": [
+                {
+                    "name": "gl",
+                    "description": "Target WebGL rendering context",
+                    "type": "WebGLRenderingContext"
+                },
+                {
+                    "name": "camera",
+                    "description": "Current camera",
+                    "type": "Kiwi.Camera"
+                },
+                {
+                    "name": "params",
+                    "description": "Composite parameter object",
+                    "type": "Object"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 1030,
+            "description": "A static property that contains the string to center align the text.",
+            "itemtype": "property",
+            "name": "TEXT_ALIGN_CENTER",
+            "type": "string",
+            "static": 1,
+            "final": 1,
+            "access": "public",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 1041,
+            "description": "A static property that contains the string to right align the text.",
+            "itemtype": "property",
+            "name": "TEXT_ALIGN_RIGHT",
+            "type": "string",
+            "static": 1,
+            "final": 1,
+            "access": "public",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        },
+        {
+            "file": "src/text-1.0.0.js",
+            "line": 1052,
+            "description": "A static property that contains the string to left align the text.",
+            "itemtype": "property",
+            "name": "TEXT_ALIGN_LEFT",
+            "type": "string",
+            "static": 1,
+            "final": 1,
+            "access": "public",
+            "tagname": "",
+            "class": "Kiwi.Plugins.Text",
+            "module": "Kiwi",
+            "submodule": "Plugins",
+            "namespace": "Kiwi.Plugins"
+        }
+    ],
+    "warnings": []
+}

@@ -1,0 +1,5 @@
+#ignore thumbnails
+Thumbs.db
+.DS_Store
+#ignore node modules
+/node_modules
